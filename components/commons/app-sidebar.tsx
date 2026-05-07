@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 
-import { NavMain } from '@/components/nav-main';
-import { NavUser } from '@/components/nav-user';
+import { NavMain } from '@/components/commons/nav-main';
 import {
   Sidebar,
   SidebarContent,
@@ -13,13 +12,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import {
-  BookOpenIcon,
-  Settings2Icon,
-  TerminalIcon,
-  Building2Icon,
-  LayoutDashboard,
-} from 'lucide-react';
+import { BookOpenIcon, Settings2Icon, TerminalIcon, Building2Icon, LayoutDashboard } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const data = {
   user: {
@@ -72,7 +67,7 @@ const data = {
         },
         {
           title: 'Add User',
-          url: '#', 
+          url: '#',
         },
       ],
     },
@@ -109,15 +104,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
+              <Link href="/dashboard">
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <TerminalIcon className="size-4" />
+                  <Image src="/logo.svg" alt="SDV EDUTECH PVT LTD" width={32} height={32} loading="eager" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">SDV EDUTECH PVT LTD</span>
                   <span className="truncate text-xs">Survey App</span>
                 </div>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -126,7 +121,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <div className="text-xs text-muted-foreground text-center py-2">
+          Copyright © 2026
+          <br />
+          SDV EDUTECH PVT LTD.
+          <br />
+          All rights reserved.
+          <br />
+          <span className="text-xs text-muted-foreground">Version 1.0.0</span>
+        </div>
       </SidebarFooter>
     </Sidebar>
   );
